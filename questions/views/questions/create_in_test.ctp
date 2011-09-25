@@ -1,0 +1,1 @@
+<?php echo $this->Mustache->element('questions/create_in_test'); ?>
