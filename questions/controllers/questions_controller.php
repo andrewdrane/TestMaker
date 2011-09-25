@@ -1,8 +1,11 @@
 <?php
 class QuestionsController extends AppController {
-
 	var $name = 'Questions';
-	var $helpers = array('Html', 'Form');
+    
+    function beforeFilter() {
+        parent::beforeFilter();
+        $this->Auth->allow('index', 'view');
+    }
 
 	function index() {
 		$this->Question->recursive = 0;
@@ -41,7 +44,7 @@ class QuestionsController extends AppController {
         $test_id = $this->data['Question']['test_id'];
         //
         $saved = $this->Question->save($this->data);
-        $this->Question->TestQuestion->save( array( 'TestQuestion' => array(
+        $this->Question->TestContent->save( array( 'TestContent' => array(
             'test_id' => $test_id,
             'question_id' => $this->Question->id,
             'order' => 0

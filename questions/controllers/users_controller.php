@@ -1,17 +1,10 @@
 <?php
-
 class UsersController extends AppController {
 	var $name = 'Users';
 
     function beforeFilter() {
         parent::beforeFilter();
         $this->Auth->allow('register', 'login');
-                    
-        $this->Auth->fields = array(
-            'username' => 'email',
-            'password' => 'password'
-        );
-        
     }
     
     function login() {
@@ -48,7 +41,8 @@ class UsersController extends AppController {
     }
 
     function view( $id ) {
-        $user = $this->User->getUser( $id ) ;
+        $this->User->contain = array('Test');
+        $user = $this->User->read(null, $id ) ;
         $this->set( 'user', $user );
     }    
     

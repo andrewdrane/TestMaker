@@ -20,11 +20,11 @@ class Question extends AppModel {
 	var $hasAndBelongsToMany = array(
 		'Test' => array(
 			'className' => 'Test',
-			'joinTable' => 'test_questions',
-			'foreignKey' => 'question_id',
+			'joinTable' => 'test_content',
+			'foreignKey' => 'content_id',
 			'associationForeignKey' => 'test_id',
 			'unique' => true,
-			'conditions' => '',
+			'conditions' => array('TestContent.content_type' => CONTENT_QUESTION),
 			'fields' => '',
 			'order' => '',
 			'limit' => '',

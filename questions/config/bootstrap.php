@@ -40,5 +40,18 @@
  * $controllerPaths = array('this path to controllers', 'second full path to controllers', 'etc...');
  *
  */
-//EOF
+
+//Content types
+define('CONTENT_QUESTION', 1);
+define('CONTENT_INSTRUCTIONS', 2);
+
+
+
+
+
+
+
+
+
+
 ?>

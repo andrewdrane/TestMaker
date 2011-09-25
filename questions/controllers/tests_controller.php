@@ -1,8 +1,11 @@
 <?php
 class TestsController extends AppController {
-
 	var $name = 'Tests';
-	var $helpers = array('Html', 'Form');
+    
+    function beforeFilter() {
+        parent::beforeFilter();
+        $this->Auth->allow('index', 'view');
+    }
 
 	function index() {
 		$this->Test->recursive = 0;
@@ -35,6 +38,7 @@ class TestsController extends AppController {
 				$this->Session->setFlash(__('The Test could not be saved. Please, try again.', true));
 			}
 		}
+        $this->render('edit');
 	}
 
 	function edit($id = null) {
@@ -59,7 +63,6 @@ class TestsController extends AppController {
 		}
         $this->set('test_id', $id);
         $this->set('questions', $this->data['Question']);
-        $this->render('add');
         
 	}
 

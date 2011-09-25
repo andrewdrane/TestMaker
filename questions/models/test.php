@@ -25,13 +25,13 @@ class Test extends AppModel {
 	var $hasAndBelongsToMany = array(
 		'Question' => array(
 			'className' => 'Question',
-			'joinTable' => 'test_questions',
+			'joinTable' => 'test_content',
 			'foreignKey' => 'test_id',
-			'associationForeignKey' => 'question_id',
+			'associationForeignKey' => 'content_id',
 			'unique' => true,
-			'conditions' => '',
+			'conditions' => array('TestContent.content_type' => CONTENT_QUESTION),
 			'fields' => '',
-			'order' => array( 'TestQuestion.order' => 'ASC' ),
+			'order' => array( 'TestContent.order' => 'ASC' ),
 			'limit' => '',
 			'offset' => '',
 			'finderQuery' => '',

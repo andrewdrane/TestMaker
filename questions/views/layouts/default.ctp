@@ -44,6 +44,25 @@
 	<div id="container">
 		<div id="header">
 			<h1><?php echo $this->Html->link(__('Quiz builder', true), 'http://cakephp.org'); ?></h1>
+            
+                <?php if( !empty( $logged_in_user_id)) { //if the user is logged in 
+                    echo "<span>Welcome {$logged_in_user_info['User']['full_name']}, your email is {$logged_in_user_info['User']['email']}</span>";
+                } ?>
+                
+                
+                <?php echo $this->Html->link('View tests', array('controller' => 'tests', 'action' => 'index')); ?>
+                <?php echo $this->Html->link('View questions', array('controller' => 'questions', 'action' => 'index')); ?>
+                <?php echo $this->Html->link('View users', array('controller' => 'users', 'action' => 'index')); ?>
+            
+                <?php if( !empty( $logged_in_user_id)) { //if the user is logged in ?>
+                    <?php echo $this->Html->link('Create a test', array('controller' => 'tests', 'action' => 'add')); ?>
+                    <?php echo $this->Html->link('My Questions', array('controller' => 'questions', 'action' => 'my_questions')); ?>
+                    <?php echo $this->Html->link('My Tests', array('controller' => 'tests', 'action' => 'my_tests')); ?>
+                    <?php echo $this->Html->link('Log out', array('controller' => 'users', 'action' => 'logout')); ?>
+                <?php } else { ?>
+                    <?php echo $this->Html->link('Create an account', array('controller' => 'jobs', 'action' => 'add')); ?>
+                    <?php echo $this->Html->link('Login', array('controller' => 'users', 'action' => 'login')); ?>
+                <?php } ?>
 		</div>
 		<div id="content">
 

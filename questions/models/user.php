@@ -24,11 +24,10 @@ class User extends AppModel {
                                             ))
     );
     
+    //virtual fields allow us to automatically combine or alter fields for display purposes. Full name simply combines the first and last names!
+    var $virtualFields = array(
+        'full_name' => 'CONCAT(first_name, " ", last_name)'
+    );
     
-    // Get user data and make sure to restrict Job.approved
-    function getUser( $id ) {
-
-    }
-
+    
 }
-?>

@@ -57,9 +57,6 @@ foreach ($tests as $test):
 	<ul>
 		<li><?php echo $html->link(__('New Test', true), array('action' => 'add')); ?></li>
 		<li><?php echo $html->link(__('List Users', true), array('controller' => 'users', 'action' => 'index')); ?> </li>
-		<li><?php echo $html->link(__('New User', true), array('controller' => 'users', 'action' => 'add')); ?> </li>
-		<li><?php echo $html->link(__('List Test Questions', true), array('controller' => 'test_questions', 'action' => 'index')); ?> </li>
-		<li><?php echo $html->link(__('New Test Question', true), array('controller' => 'test_questions', 'action' => 'add')); ?> </li>
 		<li><?php echo $html->link(__('List Questions', true), array('controller' => 'questions', 'action' => 'index')); ?> </li>
 		<li><?php echo $html->link(__('New Questions', true), array('controller' => 'questions', 'action' => 'add')); ?> </li>
 	</ul>
