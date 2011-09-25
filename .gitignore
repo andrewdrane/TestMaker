@@ -1,0 +1,8 @@
+questions/tmp/cache/models/*
+!questions/tmp/cache/models/empty
+questions/tmp/cache/persistent/*
+!questions/tmp/cache/persistent/empty
+questions/webroot/files/*
+!questions/webroot/files/empty
+questions/tmp/logs/*
+!questions/tmp/logs/empty
