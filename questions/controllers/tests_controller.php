@@ -36,6 +36,9 @@ class TestsController extends AppController {
      * 
      */
 	function add() {
+        if( !$this->Auth->user('id')) {
+            return $this->redirect( array( 'controller' => 'users', 'action' => 'login'));
+        }
         $this->Test->create();
         $this->Test->save(
                 array('Test' => array(
@@ -122,6 +125,17 @@ class TestsController extends AppController {
         $this->layout = false;
         $this->Test->Question->recursive = -1;
         $questions = $this->Test->Question->find('all');
+        $this->set('test_id', $test_id );
+        $this->set( 'question_options', $questions );
+        return $this->render('/elements/tests/question_list');
+    }
+    
+    function my_questions( $test_id = null ){
+        $this->layout = false;
+        $this->Test->Question->recursive = -1;
+        $questions = $this->Test->Question->find('all', array(
+            'conditions' => array('user_id' => $this->Auth->user('id'))
+        ));
         $this->set('test_id', $test_id );
         $this->set( 'question_options', $questions );
         return $this->render('/elements/tests/question_list');

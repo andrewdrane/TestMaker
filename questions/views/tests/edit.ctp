@@ -10,6 +10,10 @@
                     array('controller' => 'tests', 'action' => 'all_questions', $test_id), 
                     array('class' => 'selected') ); ?>
         </li>
+        <li>
+            <?php echo $this->Html->link('My questions', 
+                    array('controller' => 'tests', 'action' => 'my_questions', $test_id) ); ?>
+        </li>
     </ul>
     
     <ul id="question_list">
@@ -17,7 +21,7 @@
     </ul>
 </div>
 <div class="tests form" id="rightcol">
-<?php echo $form->create('Test');?>
+<?php echo $form->create('Test', array('url' => array('action' => 'edit')));?>
 	<fieldset>
  		<legend><?php __('Test');?></legend>
 	<?php
@@ -99,7 +103,7 @@ $(function(){
     });
     
     
-    $('.addToTest').bind('click', function(e){
+    $('.addToTest').live('click', function(e){
         e.preventDefault();
         //remove from the test - call the 
         the_link = $(this);

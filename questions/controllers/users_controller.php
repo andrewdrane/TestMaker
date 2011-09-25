@@ -4,7 +4,7 @@ class UsersController extends AppController {
 
     function beforeFilter() {
         parent::beforeFilter();
-        $this->Auth->allow('register', 'login');
+        $this->Auth->allow('register', 'login', 'view', 'index');
     }
     
     function login() {
@@ -15,7 +15,8 @@ class UsersController extends AppController {
     }
     
     function index() {
-        
+        $this->User->recursive = 0;
+		$this->set('users', $this->paginate());
     }
   
     function register( ) {

@@ -44,7 +44,13 @@
   color: red;
 }
 
-/* line 25, ../sass/screen.sass */
+/*Just for now - we want this later */
+/* line 23, ../sass/screen.sass */
+.dragHandle {
+  display: none;
+}
+
+/* line 27, ../sass/screen.sass */
 .printOnly, .inlinePrintOnly {
   display: none;
 }
