@@ -43,7 +43,7 @@ CREATE TABLE `bookmarks` (
   KEY `user` (`user_id`),
   KEY `question` (`content_id`),
   KEY `type` (`content_type`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -52,6 +52,7 @@ CREATE TABLE `bookmarks` (
 
 LOCK TABLES `bookmarks` WRITE;
 /*!40000 ALTER TABLE `bookmarks` DISABLE KEYS */;
+INSERT INTO `bookmarks` VALUES (1,2,1,7,0,NULL,'2011-09-25 12:23:38','0000-00-00 00:00:00'),(2,2,1,11,0,NULL,'2011-09-25 12:23:41','0000-00-00 00:00:00'),(3,2,1,1,0,NULL,'2011-09-25 12:23:44','0000-00-00 00:00:00'),(4,1,1,2,0,NULL,'2011-09-25 13:44:29','0000-00-00 00:00:00'),(5,1,1,6,0,NULL,'2011-09-25 13:44:29','0000-00-00 00:00:00');
 /*!40000 ALTER TABLE `bookmarks` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -130,12 +131,13 @@ DROP TABLE IF EXISTS `tests`;
 CREATE TABLE `tests` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `user_id` int(10) unsigned NOT NULL,
+  `name` varchar(128) DEFAULT NULL,
   `description` text,
   `created` datetime NOT NULL,
   `updated` datetime NOT NULL,
   PRIMARY KEY (`id`),
   KEY `user` (`user_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1 COMMENT='tests';
+) ENGINE=MyISAM AUTO_INCREMENT=21 DEFAULT CHARSET=latin1 COMMENT='tests';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -144,7 +146,7 @@ CREATE TABLE `tests` (
 
 LOCK TABLES `tests` WRITE;
 /*!40000 ALTER TABLE `tests` DISABLE KEYS */;
-INSERT INTO `tests` VALUES (1,2,'A basic Math test!!!!!!!1','2011-09-25 10:34:40','2011-09-25 11:39:23'),(2,2,NULL,'2011-09-25 10:37:05','2011-09-25 10:37:05');
+INSERT INTO `tests` VALUES (1,2,NULL,'A basic Math test!!!!!!!1','2011-09-25 10:34:40','2011-09-25 11:39:23');
 /*!40000 ALTER TABLE `tests` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -173,7 +175,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'awd@awd.com','29f5bc79da39de43270f32161be91dec5da4fe5f','Andrew','Drane','2011-09-25 00:54:58','2011-09-25 00:54:58'),(2,'andrew@andrewdrane.com','29f5bc79da39de43270f32161be91dec5da4fe5f','andrew','drane','2011-09-25 01:42:06','2011-09-25 01:42:06');
+INSERT INTO `users` VALUES (1,'max@test.com','29f5bc79da39de43270f32161be91dec5da4fe5f','Max','First','2011-09-25 00:54:58','2011-09-25 00:54:58'),(2,'andrew@andrewdrane.com','29f5bc79da39de43270f32161be91dec5da4fe5f','andrew','drane','2011-09-25 01:42:06','2011-09-25 01:42:06');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -186,4 +188,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2011-09-25 11:54:48
+-- Dump completed on 2011-09-25 14:29:35

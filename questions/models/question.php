@@ -14,11 +14,20 @@ class Question extends AppModel {
             'processing_function' => '', 
             'type_id' => QUESTION_SHORT_ANSWER ),
         QUESTION_MULTIPLE => array( 
-            'name' => 'Short Answer', 
+            'name' => 'Multiple Choice', 
             'template' => 'multiple', 
             'processing_function' => 'questionMultiple', 
             'type_id' => QUESTION_MULTIPLE )
     );
+    
+    //for generating a dropdown
+    function getTypes(){
+        $types = array();
+        foreach ($this->types as $type_id => $type) {
+            $types[ $type_id ] = $type['name'];
+        }
+        return $types;
+    }
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
 	var $belongsTo = array(

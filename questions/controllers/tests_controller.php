@@ -46,7 +46,15 @@ class TestsController extends AppController {
         $this->render('edit');
 	}
 
+    /** @TODO - why isn't auth redirect working here? is the 'tests' name confusing things?????
+     *
+     * @param type $id 
+     */
 	function edit($id = null) {
+        if( !$this->Auth->user('id')) {
+            return $this->redirect( array( 'controller' => 'users', 'action' => 'login'));
+        }
+        
 		if (!$id && empty($this->data)) {
 			$this->Session->setFlash(__('Invalid Test', true));
 			$this->redirect(array('action'=>'index'));
@@ -68,6 +76,7 @@ class TestsController extends AppController {
 		}
         
         $this->set( 'question_options', $this->Test->Question->getQuetsions() );
+        $this->set( 'question_types', $this->Test->Question->getTypes() );
         
         $this->set('test_id', $id);
         $this->set('questions', $this->data['Question']);

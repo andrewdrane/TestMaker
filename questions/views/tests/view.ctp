@@ -9,7 +9,12 @@
 			<?php echo $html->link($test['User']['full_name'], array('controller' => 'users', 'action' => 'view', $test['User']['id'])); ?>
 			&nbsp;
 		</dd>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Description'); ?></dt>
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Name'); ?></dt>
+		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
+			<?php echo $test['Test']['name']; ?>
+			&nbsp;
+		</dd>
+        <dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Description'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
 			<?php echo $test['Test']['description']; ?>
 			&nbsp;
@@ -27,8 +32,13 @@
 	</dl>
 
     <dl class="printOnly">
-		<dt><?php __('Description'); ?></dt>
+		<dt>&nbsp;</dt>
 		<dd>
+			<?php echo $test['Test']['name']; ?>
+			&nbsp;
+		</dd>
+        <?php __('Description'); ?>
+        <dd>
 			<?php echo $test['Test']['description']; ?>
 			&nbsp;
 		</dd>

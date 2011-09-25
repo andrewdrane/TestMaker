@@ -10,6 +10,7 @@ echo $paginator->counter(array(
 <tr>
 	<th><?php echo $paginator->sort('id');?></th>
 	<th><?php echo $paginator->sort('user_id');?></th>
+	<th><?php echo $paginator->sort('name');?></th>
 	<th><?php echo $paginator->sort('description');?></th>
 	<th><?php echo $paginator->sort('created');?></th>
 	<th><?php echo $paginator->sort('updated');?></th>
@@ -32,6 +33,9 @@ foreach ($tests as $test):
 		</td>
 		<td>
 			<?php echo $test['Test']['description']; ?>
+		</td>
+        <td>
+			<?php echo $test['Test']['name']; ?>
 		</td>
 		<td>
 			<?php echo $test['Test']['created']; ?>

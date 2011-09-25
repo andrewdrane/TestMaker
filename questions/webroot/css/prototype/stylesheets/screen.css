@@ -39,6 +39,12 @@
 }
 
 /* line 19, ../sass/screen.sass */
+.selected {
+  font-weight: bold;
+  color: red;
+}
+
+/* line 25, ../sass/screen.sass */
 .printOnly, .inlinePrintOnly {
   display: none;
 }

@@ -1,8 +1,15 @@
 <div id="leftcol">
     questions
     <ul id="question_list_options">
-        <li>Bookmarked</li>
-        <li>All questions</li>
+        <li>
+            <?php echo $this->Html->link('Bookmarked questions', 
+                    array('controller' => 'tests', 'action' => 'bookmarked_questions', $test_id)); ?>
+        </li>
+        <li>
+            <?php echo $this->Html->link('All questions', 
+                    array('controller' => 'tests', 'action' => 'all_questions', $test_id), 
+                    array('class' => 'selected') ); ?>
+        </li>
     </ul>
     
     <ul id="question_list">
@@ -15,6 +22,7 @@
  		<legend><?php __('Test');?></legend>
 	<?php
 		echo $form->input('id', array('value' => $test_id));
+		echo $form->input('name');
 		echo $form->input('description');
 	?>
 	</fieldset>
@@ -33,6 +41,8 @@
             ?>
             </ol>
         </div>
+    <h2>Add a question to the test</h2>
+    <?php echo $this->Form->input('type', array( 'label' => 'Question Type (Not yet active...)', 'options' => $question_types)); ?>
     <?php echo $this->Mustache->element('questions__add__short_answer'); ?>   
     
 </div>
@@ -109,6 +119,20 @@ $(function(){
             }
         )
     });
+    
+    $('#question_list_options a').click( function(e){
+        $('#question_list_options a').removeClass('selected');
+        e.preventDefault();
+        the_link = $(this);
+        $.get(
+            the_link.attr('href'),
+            {},
+            function(data){
+               $('#question_list').html( data );
+               the_link.addClass('selected');
+            }
+        )
+    })
 
 })
 </script>
