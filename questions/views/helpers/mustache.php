@@ -102,7 +102,7 @@ class MustacheHelper extends AppHelper {
      */
     private function _getElementPath( $element ) {
         $element = str_replace('__', '/', $element);
-        return ROOT . DS . 'app' . DS . 'views' . DS . 'elements' . DS . $element . '.' . $this->ext;
+        return ROOT . DS . APP_DIR . DS . 'views' . DS . 'elements' . DS . $element . '.' . $this->ext;
     }
        
     
@@ -113,10 +113,9 @@ class MustacheHelper extends AppHelper {
      */
     private function _loadTemplate( $element, $load_sub_templates = true ) {
         $path = $this->_getElementPath( $element );
-        
         //fail nicely if we have a bad file
         if(!file_exists( $path ) ) {
-            debug( "Bad template path: $element<br />" ); 
+            debug( "Bad template path:$path $element<br />" ); 
             return '';
         }
 

@@ -52,11 +52,15 @@ class TestsController extends AppController {
 			}
 		}
 		if (empty($this->data)) {
-			$this->data = $this->Test->read(null, $id);
+			$this->data = $this->Test->find('first', array(
+                'conditions' => array('Test.id' => $id ),
+                'contain' => array( 'Question', 'User' )
+            ) );
 		}
-		$questions = $this->Test->Question->find('list');
-		$users = $this->Test->User->find('list');
-		$this->set(compact('questions','users'));
+        $this->set('test_id', $id);
+        $this->set('questions', $this->data['Question']);
+        $this->render('add');
+        
 	}
 
 	function delete($id = null) {

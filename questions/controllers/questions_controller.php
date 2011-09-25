@@ -38,12 +38,23 @@ class QuestionsController extends AppController {
      */
     function create_in_test( ) {
         $this->data['Question']['user_id'] = $this->Auth->user('id');
-        //$this->data['Question']['test_id'] = $test_id;
+        $test_id = $this->data['Question']['test_id'];
         //
         $saved = $this->Question->save($this->data);
-        die(debug($saved));
+        $this->Question->TestQuestion->save( array( 'TestQuestion' => array(
+            'test_id' => $test_id,
+            'question_id' => $this->Question->id,
+            'order' => 0
+        ) ) );
+
         if ($this->isAjax() ) {
-            echo  $saved ? json_encode($saved) : '0';
+            if( $saved ) {
+                $this->Question->recursive = -1;
+                $question = $this->Question->read();
+                echo json_encode( $question );
+            } else {
+                echo 0;
+            }
             exit();
         } else {
             if ( $saved ) {

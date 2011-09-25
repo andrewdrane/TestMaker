@@ -1,6 +1,9 @@
 <div id="newQuestionFormHolder">
     <form id="newQuestionForm" action="/questions/create_in_test">
+        <label for="QuestionQuestion">Question</label>
         <textarea name="data[Question][question]" id="QuestionQuestion"></textarea>
+        <label for="QuestionSampleAnswer">Sample Answer</label>
+        <textarea name="data[Question][sample_answer]" id="QuestionSampleAnswer"></textarea>
         <input type="hidden" name="data[Question][type]" value="1" />
         <input type="hidden" name="data[Question][test_id]" value="{{test_id}}" />
         <button class="new_question_submit">Add</button>

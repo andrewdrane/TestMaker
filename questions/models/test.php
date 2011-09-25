@@ -14,32 +14,24 @@ class Test extends AppModel {
 		)
 	);
 
-	var $hasMany = array(
-		'TestQuestion' => array(
-			'className' => 'TestQuestion',
-			'foreignKey' => 'test_id',
-			'dependent' => false,
-			'conditions' => '',
-			'fields' => '',
-			'order' => '',
-			'limit' => '',
-			'offset' => '',
-			'exclusive' => '',
-			'finderQuery' => '',
-			'counterQuery' => ''
-		)
-	);
+//	var $hasMany = array(
+//		'TestQuestion' => array(
+//			'className' => 'TestQuestion',
+//			'foreignKey' => 'test_id',
+//			'dependent' => false,
+//		)
+//	);
 
 	var $hasAndBelongsToMany = array(
 		'Question' => array(
 			'className' => 'Question',
 			'joinTable' => 'test_questions',
 			'foreignKey' => 'test_id',
-			'associationForeignKey' => 'test_id',
+			'associationForeignKey' => 'question_id',
 			'unique' => true,
 			'conditions' => '',
 			'fields' => '',
-			'order' => '',
+			'order' => array( 'TestQuestion.order' => 'ASC' ),
 			'limit' => '',
 			'offset' => '',
 			'finderQuery' => '',
