@@ -11,6 +11,14 @@ class TestsController extends AppController {
 		$this->Test->recursive = 0;
 		$this->set('tests', $this->paginate());
 	}
+    
+    function my_tests(){
+        $this->set( 'headline', 'My Tests' );
+        $this->Test->recursive = 0;
+		$this->set('tests', $this->paginate(array('Test.user_id' => $this->Auth->user('id'))));
+        $this->render('index');
+    }
+    
 
 	function view($id = null) {
 		if (!$id) {
@@ -67,7 +75,7 @@ class TestsController extends AppController {
 			$this->Session->setFlash(__('Invalid id for Test', true));
 			$this->redirect(array('action'=>'index'));
 		}
-		if ($this->Test->del($id)) {
+		if ($this->Test->delete($id)) {
 			$this->Session->setFlash(__('Test deleted', true));
 			$this->redirect(array('action'=>'index'));
 		}

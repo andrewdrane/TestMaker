@@ -2,7 +2,19 @@
 
 class User extends AppModel {
 
-    var $hasMany = array( 'Test', 'Question');
+    var $hasMany = array( 
+        'Test', 
+        'Question' );
+    
+    var $hasAndBelongsToMany = array(
+		'Bookmarks' => array(
+			'className' => 'Question',
+			'joinTable' => 'bookmarks',
+			'foreignKey' => 'user_id',
+			'associationForeignKey' => 'content_id',
+			'conditions' => array('Bookmark.content_type' => CONTENT_QUESTION)
+		)
+	);
     
     var $validate = array(
         'name' => array( 'rule' => 'notEmpty' ),

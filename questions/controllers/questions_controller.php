@@ -153,7 +153,7 @@ class QuestionsController extends AppController {
 			$this->Session->setFlash(__('Invalid id for Question', true));
 			$this->redirect(array('action'=>'index'));
 		}
-		if ($this->Question->del($id)) {
+		if ($this->Question->delete($id)) {
 			$this->Session->setFlash(__('Question deleted', true));
 			$this->redirect(array('action'=>'index'));
 		}

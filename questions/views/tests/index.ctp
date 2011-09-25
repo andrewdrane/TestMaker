@@ -1,5 +1,5 @@
 <div class="tests index">
-<h2><?php __('Tests');?></h2>
+<h2><?php echo (empty($headline) ) ? __('Tests', true) : $headline;?></h2>
 <p>
 <?php
 echo $paginator->counter(array(
@@ -28,7 +28,7 @@ foreach ($tests as $test):
 			<?php echo $test['Test']['id']; ?>
 		</td>
 		<td>
-			<?php echo $html->link($test['User']['id'], array('controller' => 'users', 'action' => 'view', $test['User']['id'])); ?>
+			<?php echo $html->link($test['User']['full_name'], array('controller' => 'users', 'action' => 'view', $test['User']['id'])); ?>
 		</td>
 		<td>
 			<?php echo $test['Test']['description']; ?>
