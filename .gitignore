@@ -6,3 +6,5 @@ questions/webroot/files/*
 !questions/webroot/files/empty
 questions/tmp/logs/*
 !questions/tmp/logs/empty
+
+questions/webroot/css/prototype/.sass-cache

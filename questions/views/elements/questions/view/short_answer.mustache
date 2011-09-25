@@ -1,5 +1,14 @@
 {{#Question}}
 <li id="question{{{id}}}" class="question">
-{{{id}}} - {{question}}     
-</li> 
+{{#edit}}
+    <div class="draggable">move</a>
+{{/edit}}
+    
+{{{id}}} - {{question}}
+
+{{#edit}}
+    <a href="/questions/remove_from_test/{{test_id}}/{{question_id}}" class="removeFromTest">remove</a>
+{{/edit}}
+
+</li>
 {{/Question}}

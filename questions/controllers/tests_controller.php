@@ -20,6 +20,9 @@ class TestsController extends AppController {
 		$this->set('test', $this->Test->read(null, $id));
 	}
 
+    /** Add will create and save an empty test...
+     * 
+     */
 	function add() {
         $this->Test->create();
         $this->Test->save(
@@ -27,17 +30,7 @@ class TestsController extends AppController {
                     'user_id' => $this->Auth->user('id')
         ) ) );
         
-        $this->set('test_id', $this->Test->id);
-        
-		if (!empty($this->data)) {
-            $this->data['Test']['user_id'] = $this->Auth->user('id');
-			if ($this->Test->save($this->data)) {
-				$this->Session->setFlash(__('The Test has been saved', true));
-				$this->redirect(array('action'=>'index'));
-			} else {
-				$this->Session->setFlash(__('The Test could not be saved. Please, try again.', true));
-			}
-		}
+        $this->edit( $this->Test->id );
         $this->render('edit');
 	}
 
@@ -61,6 +54,9 @@ class TestsController extends AppController {
                 'contain' => array( 'Question', 'User' )
             ) );
 		}
+        
+        $this->set( 'question_options', $this->Test->Question->getQuetsions() );
+        
         $this->set('test_id', $id);
         $this->set('questions', $this->data['Question']);
         

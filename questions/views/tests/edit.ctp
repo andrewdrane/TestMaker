@@ -1,4 +1,22 @@
-<div class="tests form">
+<div id="leftcol">
+    questions
+    <ul>
+        <li>Bookmarked</li>
+        <li>All questions</li>
+    </ul>
+    
+    <ul>
+        <?php 
+        if ( !empty( $question_options ) ) { 
+           foreach ( $question_options as $question ) {
+              $question['Question']['edit'] = array( 'test_id' => $test_id, 'question_id' => $question['Question']['id'] );
+              echo $this->Mustache->element('questions__list__short_answer', array('Question' => $question['Question'] ));
+           }
+        }
+        ?>
+    </ul>
+</div>
+<div class="tests form" id="rightcol">
 <?php echo $form->create('Test');?>
 	<fieldset>
  		<legend><?php __('Test');?></legend>
@@ -13,8 +31,9 @@
             <h3>Questions:</h3>
             <ol  id="questions">
             <?php 
-            if ( !empty( $questions ) ) { debug($questions);
+            if ( !empty( $questions ) ) { 
                foreach ( $questions as $question ) {
+                  $question['edit'] = array( 'test_id' => $test_id, 'question_id' => $question['id'] );
                   echo $this->Mustache->element('questions__view__short_answer', array('Question' => $question ));
                }
             }
@@ -54,12 +73,49 @@ $(function(){
                             $.parseJSON(data), 
                             []);
                 $('#questions').append( mustache_html );
-                console.log( mustache_html +  'HI!!' );
-                console.log(data)
+                
                 $( '#QuestionQuestion' ).val('');//clear the form
                 $( '#QuestionSampleAnswer' ).val('');
             }
         );
     });
+    
+    $('.removeFromTest').bind('click', function(e){
+        e.preventDefault();
+        //remove from the test - call the 
+        the_link = $(this);
+        $.get(
+            the_link.attr('href'),
+            {},
+            function(data){
+                if( data ) {
+                    the_link.closest('.question').remove();
+                }
+            }
+        )
+    });
+    
+    
+    $('.addToTest').bind('click', function(e){
+        e.preventDefault();
+        //remove from the test - call the 
+        the_link = $(this);
+        $.get(
+            the_link.attr('href'),
+            {},
+            function(data){
+               if(!data){
+                   alert('Sorry, did not save');
+                   return;
+               }
+               mustache_html = Mustache.to_html(
+                            $('#questionTemplate').html(), 
+                            $.parseJSON(data), 
+                            []);
+               $('#questions').append( mustache_html );
+            }
+        )
+    });
+
 })
 </script>

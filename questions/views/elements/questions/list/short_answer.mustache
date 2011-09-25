@@ -2,8 +2,13 @@
 <div id="question{{{id}}}" class="question">
 {{{id}}} - {{question}}
 
+{{#bookmark}}
+    <a href="/bookmarks/add/question/{{{id}}}">Add to Bookmark</a>
+{{/bookmark}}
 
+{{#edit}}
+    <a href="/questions/add_to_test/{{test_id}}/{{question_id}}" class="addToTest">Add to test</a>
+{{/edit}}
 
-<a href="/bookmarks/add/question/{{{id}}}">Add to Bookmark</a>
-</div> 
+</div>
 {{/Question}}

@@ -34,6 +34,7 @@
 
 		echo $this->Html->css('cake.generic');
 		echo $this->Html->css('mockup');
+		echo $this->Html->css('prototype/stylesheets/screen');
 
 		echo $scripts_for_layout;
 	?>

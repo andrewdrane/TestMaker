@@ -48,7 +48,9 @@ define('CONTENT_INSTRUCTIONS', 2);
 
 
 
-
+//Question types
+define('QUESTION_SHORT_ANSWER', 1);
+define('QUESTION_MULTIPLE', 2);
 
 
 

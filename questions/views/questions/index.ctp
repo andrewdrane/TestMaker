@@ -6,17 +6,25 @@ echo $paginator->counter(array(
 'format' => __('Page %page% of %pages%, showing %current% records out of %count% total, starting on record %start%, ending on %end%', true)
 ));
 ?></p>
+
+<?php echo $this->Form->create('Question', array('url' => array('controller' => 'questions', 'action' => 'index'))); 
+
+
+echo $this->Form->input('keyword', array('type' => 'text', 'label' => 'Search'));
+
+
+echo $this->Form->end('Search');
+?>
+
+
+
 <table cellpadding="0" cellspacing="0">
 <tr>
 	<th><?php echo $paginator->sort('id');?></th>
 	<th><?php echo $paginator->sort('user_id');?></th>
-	<th><?php echo $paginator->sort('order');?></th>
-	<th><?php echo $paginator->sort('type');?></th>
 	<th><?php echo $paginator->sort('question');?></th>
 	<th><?php echo $paginator->sort('sample_answer');?></th>
-	<th><?php echo $paginator->sort('data');?></th>
 	<th><?php echo $paginator->sort('created');?></th>
-	<th><?php echo $paginator->sort('updated');?></th>
 	<th class="actions"><?php __('Actions');?></th>
 </tr>
 <?php
@@ -32,13 +40,7 @@ foreach ($questions as $question):
 			<?php echo $question['Question']['id']; ?>
 		</td>
 		<td>
-			<?php echo $html->link($question['User']['id'], array('controller' => 'users', 'action' => 'view', $question['User']['id'])); ?>
-		</td>
-		<td>
-			<?php echo $question['Question']['order']; ?>
-		</td>
-		<td>
-			<?php echo $question['Question']['type']; ?>
+			<?php echo $html->link($question['User']['full_name'], array('controller' => 'users', 'action' => 'view', $question['User']['id'])); ?>
 		</td>
 		<td>
 			<?php echo $question['Question']['question']; ?>
@@ -46,15 +48,11 @@ foreach ($questions as $question):
 		<td>
 			<?php echo $question['Question']['sample_answer']; ?>
 		</td>
-		<td>
-			<?php echo $question['Question']['data']; ?>
-		</td>
+
 		<td>
 			<?php echo $question['Question']['created']; ?>
 		</td>
-		<td>
-			<?php echo $question['Question']['updated']; ?>
-		</td>
+
 		<td class="actions">
 			<?php echo $html->link(__('View', true), array('action' => 'view', $question['Question']['id'])); ?>
 			<?php echo $html->link(__('Edit', true), array('action' => 'edit', $question['Question']['id'])); ?>

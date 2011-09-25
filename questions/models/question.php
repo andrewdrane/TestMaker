@@ -5,6 +5,20 @@ class Question extends AppModel {
 	var $validate = array(
 		'question' => array('notempty')
 	);
+    
+    //put in DB??
+    var $types = array(
+        QUESTION_SHORT_ANSWER => array( 
+            'name' => 'Short Answer', 
+            'template' => 'short_answer', 
+            'processing_function' => '', 
+            'type_id' => QUESTION_SHORT_ANSWER ),
+        QUESTION_MULTIPLE => array( 
+            'name' => 'Short Answer', 
+            'template' => 'multiple', 
+            'processing_function' => 'questionMultiple', 
+            'type_id' => QUESTION_MULTIPLE )
+    );
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
 	var $belongsTo = array(
@@ -34,6 +48,27 @@ class Question extends AppModel {
 			'insertQuery' => ''
 		)
 	);
+    
+    //gets questions with the proper templates
+    function getQuetsions( $conditions = array(), $keyworkds = array() ) {
+        
+        $params = array(
+            'contain' => array(),
+        );
+        
+        if( !empty( $conditions )) {
+            $params['conditions'] = $conditions;
+        }
+        
+        $questions = $this->find('all',$params  );
+        return $questions;
+    }
+    
+    
+    //question processing for saving
+    function questionMultiple( $data ) {
+        //serialize data to json, make sure all questions are an array.
+    }
 
 }
 ?>
