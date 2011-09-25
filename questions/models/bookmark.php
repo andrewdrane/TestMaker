@@ -19,4 +19,3 @@ class Bookmark extends AppModel {
 	);
 
 }
-?>

@@ -1,19 +1,12 @@
 <div id="leftcol">
     questions
-    <ul>
+    <ul id="question_list_options">
         <li>Bookmarked</li>
         <li>All questions</li>
     </ul>
     
-    <ul>
-        <?php 
-        if ( !empty( $question_options ) ) { 
-           foreach ( $question_options as $question ) {
-              $question['Question']['edit'] = array( 'test_id' => $test_id, 'question_id' => $question['Question']['id'] );
-              echo $this->Mustache->element('questions__list__short_answer', array('Question' => $question['Question'] ));
-           }
-        }
-        ?>
+    <ul id="question_list">
+        <?php echo $this->element('tests/question_list'); ?>
     </ul>
 </div>
 <div class="tests form" id="rightcol">

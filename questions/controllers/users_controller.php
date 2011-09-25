@@ -46,6 +46,22 @@ class UsersController extends AppController {
         $this->set( 'user', $user );
     }    
     
+    /** Gests a user's bookmarked content
+     *
+     * @param type $user_id 
+     */
+    function bookmarked_questions( $user_id = null ){
+        if( !$user_id ) {
+            $user_id = $this->Auth->user('id');
+        }
+        $user = $this->User->find('first', array(
+            'conditions' => array('User.id' => $user_id ),
+            'contain' => array('BookmarkedQuestions'),
+        ));
+        $this->layout = false;
+        $this->render('elements/tests/question_list');
+    }
+    
     function logout() {
         $this->Auth->logout();
         $this->redirect( array('controller'=>'users','action'=>'index'));

@@ -9,12 +9,39 @@ class QuestionsController extends AppController {
 
 	function index() {
 		$this->Question->recursive = 0;
-        $condtions = array();
+        $condtions = $this->_searchConditions();
+		$this->set('questions', $this->paginate($condtions));
+	}
+    
+    function my_questions(){
+        $this->set( 'headline', 'My Questions' );
+        $this->Question->recursive = 0;
+        $condtions = $this->_searchConditions();
+        
+		$condtions['Question.user_id'] = $this->Auth->user('id');
+        
+		$this->set('questions', $this->paginate($condtions));
+        $this->render('index');
+    }
+    
+    
+    private function _searchConditions(){
+        if($this->Auth->user('id')){
+            $this->Question->bindModel(array('hasOne'=> array('Bookmark' => array(
+                'foreignKey' => 'content_id',
+                'conditions' => array(
+                    'Bookmark.content_type' => CONTENT_QUESTION,
+                    'Bookmark.user_id' => $this->Auth->user('id')
+            ) ) ) ) );
+            $this->paginate['Question']['contain'] = array('Bookmark', 'User');
+        }
+        
+        $conditions = array();
         if(!empty($this->data['Question']['keyword'])) {
            $condtions['Question.question like ?'] = "%{$this->data['Question']['keyword']}%";
         }
-		$this->set('questions', $this->paginate($condtions));
-	}
+        return $conditions;
+    }
 
 	function view($id = null) {
 		if (!$id) {

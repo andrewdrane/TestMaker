@@ -54,6 +54,13 @@ foreach ($questions as $question):
 		</td>
 
 		<td class="actions">
+			<?php 
+            if( empty( $question['Bookmark']['id'])) {
+                echo $html->link(__('Bookmark', true), array( 'controller' => 'bookmarks', 'action' => 'add_bookmark', $question['Question']['id']), array('class' => 'addBookmark')); 
+            } else {
+                echo 'Bookmarked';
+            }
+            ?>
 			<?php echo $html->link(__('View', true), array('action' => 'view', $question['Question']['id'])); ?>
 			<?php echo $html->link(__('Edit', true), array('action' => 'edit', $question['Question']['id'])); ?>
 			<?php echo $html->link(__('Delete', true), array('action' => 'delete', $question['Question']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $question['Question']['id'])); ?>
@@ -75,3 +82,19 @@ foreach ($questions as $question):
 		<li><?php echo $html->link(__('New Test', true), array('controller' => 'tests', 'action' => 'add')); ?> </li>
 	</ul>
 </div>
+
+<script type="text/javascript">
+    $('.addBookmark').click(function(e){
+       e.preventDefault();
+       var link = $(this);
+       $.get(
+           link.attr('href'),
+           {},
+           function(data){
+               if(data){
+                   link.replaceWith('<span>saved</span>');
+               }
+           }
+       )
+    });
+</script>

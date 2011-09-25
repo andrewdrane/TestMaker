@@ -7,7 +7,7 @@ class User extends AppModel {
         'Question' );
     
     var $hasAndBelongsToMany = array(
-		'Bookmarks' => array(
+		'BookmarkedQuestions' => array(
 			'className' => 'Question',
 			'joinTable' => 'bookmarks',
 			'foreignKey' => 'user_id',
