@@ -11,7 +11,7 @@
  */
 class AppController extends Controller {
     var $components = array( 'Auth', 'Session', 'RequestHandler' );
-    var $helpers = array( 'Html', 'Form', 'Session', 'Paginator' );//, 'Mustache');
+    var $helpers = array( 'Html', 'Form', 'Session', 'Paginator', 'Mustache');
     
     //Always run before rendering.
     function beforeRender(){
