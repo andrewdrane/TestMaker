@@ -25,7 +25,11 @@ class TestsController extends AppController {
 			$this->Session->setFlash(__('Invalid Test.', true));
 			$this->redirect(array('action'=>'index'));
 		}
-		$this->set('test', $this->Test->read(null, $id));
+        $test = $this->Test->find('first', array(
+                'conditions' => array('Test.id' => $id ),
+                'contain' => array( 'Question', 'User' )
+            ) );
+		$this->set('test', $test );
 	}
 
     /** Add will create and save an empty test...

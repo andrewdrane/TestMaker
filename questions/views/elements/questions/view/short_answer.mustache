@@ -4,10 +4,16 @@
     <div class="draggable">move</a>
 {{/edit}}
     
-{{{id}}} - {{question}}
+{{question}}
 
 {{#edit}}
     <a href="/questions/remove_from_test/{{test_id}}/{{question_id}}" class="removeFromTest">remove</a>
+{{/edit}}
+
+{{^edit}}
+    <div class="sampleAnswer">
+        <strong>Sample Answer: </strong>{{sample_answer}}
+    </div>
 {{/edit}}
 
 </li>

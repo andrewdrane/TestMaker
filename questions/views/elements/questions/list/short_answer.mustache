@@ -1,6 +1,6 @@
 {{#Question}}
 <div id="question{{{id}}}" class="question">
-{{{id}}} - {{question}}
+{{question}}
 
 {{#bookmark}}
     <a href="/bookmarks/add/question/{{{id}}}">Add to Bookmark</a>
@@ -9,6 +9,8 @@
 {{#edit}}
     <a href="/questions/add_to_test/{{test_id}}/{{question_id}}" class="addToTest">Add to test</a>
 {{/edit}}
+
+
 
 </div>
 {{/Question}}

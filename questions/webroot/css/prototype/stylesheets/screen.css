@@ -37,3 +37,8 @@
 * html #rightcol {
   overflow-x: hidden;
 }
+
+/* line 19, ../sass/screen.sass */
+.printOnly, .inlinePrintOnly {
+  display: none;
+}

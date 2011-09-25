@@ -1,3 +1,30 @@
 /* Welcome to Compass. Use this file to define print styles.
  * Import this file using the following HTML or equivalent:
  * <link href="/stylesheets/print.css" media="print" rel="stylesheet" type="text/css" /> */
+/* line 4, ../sass/print.sass */
+#header, #footer, .cake-sql-log, .sampleAnswer, .actions {
+  display: none;
+}
+
+/* line 6, ../sass/print.sass */
+.screenOnly {
+  display: none;
+}
+
+/* line 8, ../sass/print.sass */
+.question {
+  border: none;
+  border-bottom: 1px solid black;
+  padding-bottom: 50px;
+  margin-bottom: 50px;
+}
+
+/* line 13, ../sass/print.sass */
+.printOnly {
+  display: block;
+}
+
+/* line 15, ../sass/print.sass */
+.inlinePrintOnly {
+  display: inline;
+}
