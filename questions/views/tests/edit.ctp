@@ -46,11 +46,13 @@
             </ol>
         </div>
     <h2>Add a question to the test</h2>
-    <?php echo $this->Form->input('type', array( 'label' => 'Question Type (Not yet active...)', 'options' => $question_types)); ?>
-    <?php echo $this->Mustache->element('questions__add__short_answer'); ?>   
+    <?php echo $this->Form->input('type', array( 'label' => 'Question Type (Not yet active...)', 'id' => 'questionTypes', 'options' => $question_types)); ?>
+    <div id="createQuestionContainer">
+        <?php echo $this->Mustache->element('questions__add__short_answer'); ?>  
+    </div>
     
 </div>
-
+<?php echo $this->Form->hidden('test_id', array('value' => $test_id, 'id' => 'test_id_value')); ?>
 
 
 <script type="html/template" id="questionTemplate">
@@ -58,9 +60,68 @@
 </script>
 
 <script type="text/javascript">
-$(function(){
+$( function() {
+    TM.initNewQuestion();
+    TM.initRemoveQuestion();
+    TM.initQuestionLists();
+    
+    $('#questionTypes').bind('change', function(){
+        $.get(
+            '/questions/get_question_template/' + $('#test_id_value').val() + '/' + $('#questionTypes').val(),
+            {},
+            function( data ) {
+                $('#createQuestionContainer').html(data);
+            }
+        );
+    });
+});
+
+//test maker oo programming
+TM = {};
+
+//make the question lists clickable
+TM.initQuestionLists = function(){
+    $('#question_list_options a').click( function(e){
+        e.preventDefault();
+        $('#question_list_options a').removeClass('selected');
+        the_link = $(this);
+        $.get(
+            the_link.attr('href'),
+            {},
+            function(data){
+               $('#question_list').html( data );
+               the_link.addClass('selected');
+            }
+        )
+    });
+    
+    //activate the questions on the left
+    $('.addToTest').live('click', function(e){
+        e.preventDefault();
+        //remove from the test - call the 
+        the_link = $(this);
+        $.get(
+            the_link.attr('href'),
+            {},
+            function(data){
+               if(!data){
+                   alert('Sorry, did not save');
+                   return;
+               }
+               mustache_html = Mustache.to_html(
+                            $('#questionTemplate').html(), 
+                            $.parseJSON(data), 
+                            []);
+               $('#questions').append( mustache_html );
+            }
+        )
+    });
+}
+
+//initialize saving new questions
+TM.initNewQuestion = function(){
     //on return, clear form, render mustache, add to questions
-    $('.new_question_submit').bind('click', function(e){
+    $('#newQuestionForm').live('submit', function(e){
         e.preventDefault();
         if( !$( '#QuestionQuestion' ).val().length ) {
             return;
@@ -86,7 +147,9 @@ $(function(){
             }
         );
     });
-    
+}
+
+TM.initRemoveQuestion = function(){
     $('.removeFromTest').bind('click', function(e){
         e.preventDefault();
         //remove from the test - call the 
@@ -101,42 +164,6 @@ $(function(){
             }
         )
     });
-    
-    
-    $('.addToTest').live('click', function(e){
-        e.preventDefault();
-        //remove from the test - call the 
-        the_link = $(this);
-        $.get(
-            the_link.attr('href'),
-            {},
-            function(data){
-               if(!data){
-                   alert('Sorry, did not save');
-                   return;
-               }
-               mustache_html = Mustache.to_html(
-                            $('#questionTemplate').html(), 
-                            $.parseJSON(data), 
-                            []);
-               $('#questions').append( mustache_html );
-            }
-        )
-    });
-    
-    $('#question_list_options a').click( function(e){
-        $('#question_list_options a').removeClass('selected');
-        e.preventDefault();
-        the_link = $(this);
-        $.get(
-            the_link.attr('href'),
-            {},
-            function(data){
-               $('#question_list').html( data );
-               the_link.addClass('selected');
-            }
-        )
-    })
+}
 
-})
 </script>

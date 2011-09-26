@@ -1,5 +1,5 @@
 <IfModule mod_rewrite.c>
     RewriteEngine on
-    RewriteRule    ^$    questions/webroot/    [L]
-    RewriteRule    (.*) questions/webroot/$1    [L]
+    RewriteRule    ^$    questions/webroot/    [QSA,L]
+    RewriteRule    (.*) questions/webroot/$1    [QSA,L]
  </IfModule>

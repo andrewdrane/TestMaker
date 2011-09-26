@@ -154,6 +154,20 @@ class QuestionsController extends AppController {
             }
         }
     }
+    
+    //ajax function for getting different type of question
+    function get_question_template( $test_id, $question_type ) {
+        if( !isset( $this->Question->types[$question_type] ) ) {
+            exit();
+        }
+        
+       
+        App::import('Helper', 'Mustache'); // loadHelper('Html'); in CakePHP 1.1.x.x
+        $Mustache = new MustacheHelper();
+        //the helper is not getting the correct view objects
+        @$html = $Mustache->element( 'questions__add__' . $this->Question->types[$question_type]['template'], array( 'test_id' => $test_id ) );
+        die($html);
+    }
 
 	function edit($id = null) {
 		if (!$id && empty($this->data)) {
@@ -187,4 +201,3 @@ class QuestionsController extends AppController {
 	}
 
 }
-?>

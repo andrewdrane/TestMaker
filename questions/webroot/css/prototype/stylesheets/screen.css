@@ -39,18 +39,23 @@
 }
 
 /* line 19, ../sass/screen.sass */
+.multipleChoice {
+  list-style-type: lower-alpha;
+}
+
+/* line 24, ../sass/screen.sass */
 .selected {
   font-weight: bold;
   color: red;
 }
 
 /*Just for now - we want this later */
-/* line 23, ../sass/screen.sass */
+/* line 31, ../sass/screen.sass */
 .dragHandle {
   display: none;
 }
 
-/* line 27, ../sass/screen.sass */
+/* line 35, ../sass/screen.sass */
 .printOnly, .inlinePrintOnly {
   display: none;
 }

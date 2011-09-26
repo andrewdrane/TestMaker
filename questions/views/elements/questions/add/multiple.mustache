@@ -1,0 +1,25 @@
+<form id="newQuestionForm" action="/questions/create_in_test">
+    <label for="QuestionQuestion">Question</label>
+    <textarea name="data[Question][question]" id="QuestionQuestion"></textarea>
+    <label>Answer Options</label>
+    
+    <ol class="multipleChoice">
+        <li><input type="text" name="data[Question][data]['option'][0]" value="{{option_0}}" /></li>
+        <li><input type="text" name="data[Question][data]['option'][1]" value="{{option_1}}" /></li>
+        <li><input type="text" name="data[Question][data]['option'][2]" value="{{option_2}}" /></li>
+        <li><input type="text" name="data[Question][data]['option'][3]" value="{{option_3}}" /></li>
+    </ol>
+
+    
+    <input type="hidden" name="data[Question][type]" value="2" />
+    <input type="hidden" name="data[Question][test_id]" value="{{test_id}}" />
+    
+    <button class="addNewMultipleChoice">Add another option</button>
+    
+    <label for="QuestionSampleAnswer">Correct choice</label>
+    <input name="data[Question][sample_answer]" id="QuestionSampleAnswer" type="text" />
+    
+    
+    
+    <button class="new_question_submit">Save Question</button>
+</form>
