@@ -79,7 +79,8 @@ class QuestionsController extends AppController {
             'test_id' => $test_id,
             'content_id' => $this->Question->id,
             'content_type' => CONTENT_QUESTION,
-            'order' => 0
+            'order' => 0,
+            'data' => $this->data['Question']['data']
         ) ) );
 
         if ($this->isAjax() ) {
@@ -164,7 +165,7 @@ class QuestionsController extends AppController {
        
         App::import('Helper', 'Mustache'); // loadHelper('Html'); in CakePHP 1.1.x.x
         $Mustache = new MustacheHelper();
-        //the helper is not getting the correct view objects
+        //the helper is not getting the correct view variables, but it works if we pass them in
         @$html = $Mustache->element( 'questions__add__' . $this->Question->types[$question_type]['template'], array( 'test_id' => $test_id ) );
         die($html);
     }

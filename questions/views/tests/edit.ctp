@@ -38,8 +38,10 @@
             <?php 
             if ( !empty( $questions ) ) { 
                foreach ( $questions as $question ) {
+                  if( empty( $question_type_data[$question['type']]['template'] )) continue; //if we have bad data
                   $question['edit'] = array( 'test_id' => $test_id, 'question_id' => $question['id'] );
-                  echo $this->Mustache->element('questions__view__short_answer', array('Question' => $question ));
+                  $template = $question_type_data[$question['type']]['template']; 
+                  echo $this->Mustache->element('questions__view__' . $template, array('Question' => $question ));
                }
             }
             ?>

@@ -78,6 +78,13 @@ class Question extends AppModel {
     function questionMultiple( $data ) {
         //serialize data to json, make sure all questions are an array.
     }
+    
+    //serialize the data portion if it is an array
+    function beforeSave(){
+        if( !empty($this->data['Question']['data']) && is_array($this->data['Question']['data'])) {
+            $this->data['Question']['data'] = json_encode( $this->data['Question']['data'] );
+        }
+        return true;
+    }
 
 }
-?>

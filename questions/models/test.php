@@ -39,6 +39,25 @@ class Test extends AppModel {
 			'insertQuery' => ''
 		)
 	);
+    
+    /** Expand question data
+     *
+     * @param type $id
+     * @return type 
+     */
+    function getTest( $id ) {
+        $test = $this->find('first', array(
+            'conditions' => array('Test.id' => $id ),
+            'contain' => array( 'Question', 'User' )
+        ) );
+        
+        foreach ($test['Question'] as &$question) {
+            if( !empty( $question['data'])) {
+                $question['data'] = json_decode( $question['data'], true );
+            }
+        }
+        
+        return $test;
+    }
 
 }
-?>

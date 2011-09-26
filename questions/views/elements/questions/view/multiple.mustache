@@ -1,0 +1,28 @@
+{{#Question}}
+<li id="question{{{id}}}" class="question">
+{{#edit}}
+    <div class="dragHandle">move</div>
+{{/edit}}
+    
+{{question}}
+
+{{#data}}
+<ol class="multipleChoice">
+    {{#options}}
+    <li>{{.}}</li>
+    {{/options}}
+</ol>
+{{/data}}
+
+{{#edit}}
+    <a href="/questions/remove_from_test/{{test_id}}/{{question_id}}" class="removeFromTest">remove</a>
+{{/edit}}
+
+{{^edit}}
+    <div class="sampleAnswer">
+        <strong>Correct choice: </strong>{{sample_answer}}
+    </div>
+{{/edit}}
+
+</li>
+{{/Question}}

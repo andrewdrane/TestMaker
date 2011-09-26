@@ -20,16 +20,16 @@ class TestsController extends AppController {
     }
     
 
-	function view($id = null) {
+	function view( $id = null ) {
 		if (!$id) {
-			$this->Session->setFlash(__('Invalid Test.', true));
+			$this->Session->setFlash( __('Invalid Test.', true) );
 			$this->redirect(array('action'=>'index'));
 		}
-        $test = $this->Test->find('first', array(
-                'conditions' => array('Test.id' => $id ),
-                'contain' => array( 'Question', 'User' )
-            ) );
-		$this->set('test', $test );
+        $test = $this->Test->getTest( $id );
+        
+		$this->set( 'test', $test );
+        $this->set( 'question_types', $this->Test->Question->getTypes() );
+        $this->set( 'question_type_data', $this->Test->Question->types );
 	}
 
     /** Add will create and save an empty test...
@@ -72,14 +72,12 @@ class TestsController extends AppController {
 			}
 		}
 		if (empty($this->data)) {
-			$this->data = $this->Test->find('first', array(
-                'conditions' => array('Test.id' => $id ),
-                'contain' => array( 'Question', 'User' )
-            ) );
+			$this->data = $this->Test->getTest($id);
 		}
         
         $this->set( 'question_options', $this->Test->Question->getQuetsions() );
         $this->set( 'question_types', $this->Test->Question->getTypes() );
+        $this->set( 'question_type_data', $this->Test->Question->types );
         
         $this->set('test_id', $id);
         $this->set('questions', $this->data['Question']);

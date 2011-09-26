@@ -50,7 +50,8 @@
         <?php 
         if ( !empty( $test['Question'] ) ) { 
            foreach ( $test['Question'] as $question ) {
-              echo $this->Mustache->element('questions__view__short_answer', array('Question' => $question ));
+              $template = $question_type_data[$question['type']]['template']; 
+              echo $this->Mustache->element('questions__view__' . $template, array('Question' => $question ));
            }
         }
         ?>
