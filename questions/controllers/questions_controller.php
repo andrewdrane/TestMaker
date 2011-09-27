@@ -185,7 +185,8 @@ class QuestionsController extends AppController {
 			}
 		}
 		if (empty($this->data)) {
-			$this->data = $this->Question->read(null, $id);
+			$this->data = $this->Question->getQuestion($id);
+            $this->set('question', $this->data); //easier varaible access since we are probably going to use mustache templates
 		}
 		$this->set(compact('tests','users'));
 	}

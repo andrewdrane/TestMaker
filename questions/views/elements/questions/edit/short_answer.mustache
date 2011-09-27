@@ -1,0 +1,10 @@
+{{#question}}
+    {{#Question}}
+    <label for="QuestionQuestion">Question</label>
+        <textarea name="data[Question][question]" id="QuestionQuestion">{{question}}</textarea>
+        <label for="QuestionSampleAnswer">Sample Answer</label>
+        <textarea name="data[Question][sample_answer]" id="QuestionSampleAnswer">{{sample_answer}}</textarea>
+        <input type="hidden" name="data[Question][type]" value="{{type}}" />
+        <input type="hidden" name="data[Question][id]" value="{{id}}" />
+    {{/Question}}
+{{/question}}

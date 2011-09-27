@@ -3,10 +3,7 @@
 	<fieldset>
  		<legend><?php __('Edit Question');?></legend>
 	<?php
-		echo $form->input('id');
-		//echo $form->input('type');
-		echo $form->input('question');
-		echo $form->input('sample_answer');
+		echo $this->Mustache->element( 'questions__edit__' . $question['Type']['template'] );
 	?>
 	</fieldset>
 <?php echo $form->end('Submit');?>

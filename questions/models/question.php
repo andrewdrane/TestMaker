@@ -70,7 +70,21 @@ class Question extends AppModel {
         }
         
         $questions = $this->find('all',$params  );
+        
+        //foreach question - add the template data
+        
         return $questions;
+    }
+    
+    function getQuestion( $id ) {
+        $this->recursive = 0;
+        $question = $this->findById($id);
+        if( !empty( $question['Question']['data'] ) ) {
+            $question['Question']['json_data'] = $question['Question']['data']; //in case we want the original JSON
+            $question['Question']['data'] = json_decode( $question['data'], true );
+        }
+        $question['Type'] = $this->types[ $question['Question']['type'] ] ; //so we have the template data for rendering if needed
+        return $question;
     }
     
     
