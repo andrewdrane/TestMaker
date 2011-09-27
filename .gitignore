@@ -2,10 +2,16 @@ questions/tmp/cache/models/*
 !questions/tmp/cache/models/empty
 questions/tmp/cache/persistent/*
 !questions/tmp/cache/persistent/empty
+questions/tmp/cache/views/*
+!questions/tmp/cache/views/empty
 questions/webroot/files/*
 !questions/webroot/files/empty
 questions/tmp/logs/*
 !questions/tmp/logs/empty
+questions/tmp/tests/*
+!questions/tmp/tests/empty
+questions/tmp/sessions/*
+!questions/tmp/sessions/empty
 
 questions/webroot/css/prototype/.sass-cache
 deploy/
